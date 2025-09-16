@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Dto;
 
-final class TableARatesDto
+readonly class TableARatesDto
 {
     public function __construct(
         public readonly string $table,

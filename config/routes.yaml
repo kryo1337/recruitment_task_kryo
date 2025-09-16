@@ -4,6 +4,10 @@
 #  methods:  GET
 #
 
+test_nbp:
+    path: /test-nbp
+    controller: App\Controller\TestController::testNbp
+
 setupcheck:
     path: /api/setup-check
     controller: App\Controller\DefaultController::setupCheck

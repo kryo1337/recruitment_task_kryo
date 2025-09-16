@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Dto;
 
-final class HistoricalRateDto
+readonly class HistoricalRateDto
 {
     public function __construct(
         public readonly string $code,
