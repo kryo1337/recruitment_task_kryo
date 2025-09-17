@@ -13,9 +13,6 @@ use App\Exception\UnsupportedOperationException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Routing\Annotation\Route;
-
-#[Route('/api')]
 final class RatesController extends AbstractController
 {
     public function __construct(
@@ -24,7 +21,6 @@ final class RatesController extends AbstractController
     ) {
     }
 
-    #[Route('/rates/{code}', name: 'rates_get', methods: ['GET'])]
     public function getRate(string $code, Request $request): JsonResponse
     {
         return $this->handleApiErrors(function() use ($code, $request) {
@@ -41,7 +37,6 @@ final class RatesController extends AbstractController
         });
     }
 
-    #[Route('/rates/{code}/history', name: 'rates_history', methods: ['GET'])]
     public function getHistory(string $code, Request $request): JsonResponse
     {
         return $this->handleApiErrors(function() use ($code, $request) {
@@ -67,7 +62,6 @@ final class RatesController extends AbstractController
         });
     }
 
-    #[Route('/cantor/quote/{code}', name: 'cantor_quote', methods: ['GET'])]
     public function getCantorQuote(string $code, Request $request): JsonResponse
     {
         return $this->handleApiErrors(function() use ($code, $request) {

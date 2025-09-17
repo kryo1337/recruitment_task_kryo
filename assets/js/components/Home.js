@@ -2,7 +2,8 @@
 
 import React, {Component} from 'react';
 import {Route, Redirect, Switch, Link} from 'react-router-dom';
-import SetupCheck from "./SetupCheck";
+// import SetupCheck from "./SetupCheck";
+import RatesDashboard from "./RatesDashboard";
 
 class Home extends Component {
 
@@ -13,16 +14,19 @@ class Home extends Component {
                     <Link className={"navbar-brand"} to={"#"}> Telemedi Zadanko </Link>
                     <div id="navbarText">
                         <ul className="navbar-nav mr-auto">
-                            <li className="nav-item">
+                            {/* <li className="nav-item">
                                 <Link className={"nav-link"} to={"/setup-check"}> React Setup Check </Link>
+                            </li> */}
+                            <li className="nav-item">
+                                <Link className={"nav-link"} to={"/"}> Currency Rates </Link>
                             </li>
-
                         </ul>
                     </div>
                 </nav>
                 <Switch>
-                    <Redirect exact from="/" to="/setup-check" />
-                    <Route path="/setup-check" component={SetupCheck} />
+                    <Route exact path="/" component={RatesDashboard} />
+                    {/* <Route path="/setup-check" component={SetupCheck} /> */}
+                    <Route path="/rates" component={RatesDashboard} />
                 </Switch>
             </div>
         )
