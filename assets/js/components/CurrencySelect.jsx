@@ -15,16 +15,15 @@ const CurrencySelect = ({ value, onChange, currencies, label, disabled }) => {
     };
 
     return (
-        <div className="form-group">
-            {label && <label htmlFor="currency-select">{label}</label>}
+        <div className="mb-3">
+            {label && <label htmlFor="currency-select" className="form-label">{label}</label>}
             <select
                 id="currency-select"
-                className="form-control"
+                className="form-select"
                 value={value}
                 onChange={handleChange}
                 disabled={disabled}
             >
-                <option value="">Select Currency</option>
                 {currencies.map((currency) => (
                     <option key={currency} value={currency}>
                         {currency} - {CURRENCY_NAMES[currency] || currency}

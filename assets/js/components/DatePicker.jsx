@@ -11,8 +11,8 @@ const DatePicker = ({ value, onChange, label, min, max, disabled }) => {
     const maxDate = max || today;
 
     return (
-        <div className="form-group">
-            {label && <label htmlFor="date-picker">{label}</label>}
+        <div className="mb-3">
+            {label && <label htmlFor="date-picker" className="form-label">{label}</label>}
             <input
                 id="date-picker"
                 type="date"
@@ -23,9 +23,9 @@ const DatePicker = ({ value, onChange, label, min, max, disabled }) => {
                 max={maxDate}
                 disabled={disabled}
             />
-            <small className="form-text text-muted">
+            <div className="form-text">
                 Select date for currency rates (format: YYYY-MM-DD)
-            </small>
+            </div>
         </div>
     );
 };
