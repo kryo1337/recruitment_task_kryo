@@ -112,13 +112,13 @@ final class RatesController extends AbstractController
     {
         $sideStr = $request->query->get('side');
         if ($sideStr === null) {
-            throw $this->createNotFoundException('Missing required parameter: side');
+            throw new \InvalidArgumentException('side parameter is required');
         }
 
         return match (strtolower($sideStr)) {
             'buy' => TradeSide::BUY,
             'sell' => TradeSide::SELL,
-            default => throw $this->createNotFoundException(sprintf('Invalid side "%s". Use buy or sell.', $sideStr))
+            default => throw new \InvalidArgumentException(sprintf('Invalid trade side: %s', $sideStr))
         };
     }
 
@@ -130,6 +130,8 @@ final class RatesController extends AbstractController
             return $this->json(['error' => $e->getMessage()], 404);
         } catch (UnsupportedOperationException $e) {
             return $this->json(['error' => $e->getMessage()], 400);
+        } catch (\Symfony\Component\HttpKernel\Exception\NotFoundHttpException $e) {
+            return $this->json(['error' => $e->getMessage()], 404);
         } catch (\InvalidArgumentException $e) {
             return $this->json(['error' => $e->getMessage()], 400);
         } catch (\Exception $e) {

@@ -6,7 +6,7 @@ namespace App\Dto;
 
 use App\Value\TradeSide;
 
-readonly class CantorQuoteDto
+class CantorQuoteDto
 {
     public function __construct(
         public string $code,

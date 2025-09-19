@@ -18,6 +18,11 @@ final class CantorPricingService
     public function quote(string $code, TradeSide $side, \DateTimeInterface $date): CantorQuoteDto
     {
         $currency = CurrencyCode::fromString($code);
+        
+        if (in_array($currency, [CurrencyCode::CZK, CurrencyCode::IDR, CurrencyCode::BRL]) && $side === TradeSide::BUY) {
+            throw new UnsupportedOperationException(sprintf('BUY not supported for %s', $currency->value));
+        }
+        
         $rate = $this->nbpClient->getSingleRateA($currency->value, $date);
 
         $price = match ($currency) {
@@ -25,10 +30,7 @@ final class CantorPricingService
                 TradeSide::BUY => $rate->mid - 0.15,
                 TradeSide::SELL => $rate->mid + 0.11,
             },
-            CurrencyCode::CZK, CurrencyCode::IDR, CurrencyCode::BRL => match ($side) {
-                TradeSide::SELL => $rate->mid + 0.2,
-                TradeSide::BUY => throw new UnsupportedOperationException(sprintf('BUY not supported for %s', $currency->value)),
-            },
+            CurrencyCode::CZK, CurrencyCode::IDR, CurrencyCode::BRL => $rate->mid + 0.2,
         };
 
         return CantorQuoteDto::fromRate($rate, $side, $price);

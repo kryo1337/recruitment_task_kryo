@@ -12,7 +12,7 @@ use Symfony\Contracts\HttpClient\Exception\HttpExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
-final class NbpClient
+class NbpClient
 {
     public function __construct(private readonly HttpClientInterface $http)
     {
