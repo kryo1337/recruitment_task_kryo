@@ -4,9 +4,28 @@
 #  methods:  GET
 #
 
+test_nbp:
+    path: /test-nbp
+    controller: App\Controller\TestController::testNbp
+
 setupcheck:
     path: /api/setup-check
     controller: App\Controller\DefaultController::setupCheck
+
+rates_get:
+    path: /api/rates/{code}
+    controller: App\Controller\Api\RatesController::getRate
+    methods: [GET]
+
+rates_history:
+    path: /api/rates/{code}/history
+    controller: App\Controller\Api\RatesController::getHistory
+    methods: [GET]
+
+cantor_quote:
+    path: /api/cantor/quote/{code}
+    controller: App\Controller\Api\RatesController::getCantorQuote
+    methods: [GET]
 
 index:
     path: /{wildcard}
